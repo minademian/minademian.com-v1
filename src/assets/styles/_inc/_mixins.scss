@@ -1,0 +1,139 @@
+@use "sass:string";
+
+@mixin make-me-flex($type) {
+  display: flex;
+  @if $type == "row" {
+    flex-direction: row;
+  } @else {
+    flex-direction: column;
+  }
+}
+
+@mixin block-images($value) {
+  img {
+    display: inline-flex;
+    width: string.unquote($value) + "%";
+    min-height: 100%;
+  }
+}
+
+@mixin inline-block-images($value) {
+  img {
+    display: flex;
+    width: string.unquote($value) + "%";
+    min-height: 100%;
+  }
+}
+
+@mixin voltaire-logo($mode: "mobile") {
+  figure[class="logo"] {
+    @if ($mode == mobile) {
+      background-image: url("../img/logo_rs.png");
+    } @else {
+      background-image: url("../img/logo.png");
+    }
+    background-repeat: no-repeat;
+    resize: horizontal;
+    width: 80%;
+    text-indent: -3333px;
+    margin-left: 80px;
+    z-index: 99;
+    padding: 0;
+    h1 {
+      display: block;
+      width: 10em;
+      height: 60px;
+      text-decoration: none;
+      border: 0;
+    }
+  }
+}
+
+@mixin toggle() {
+  .toggle {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.68);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    overflow: hidden;
+    z-index: 99;
+    span {
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      background-color: #000;
+      border-radius: 2px;
+      transition: 0.5s;
+      padding-left: 10px;
+      &:nth-child(1) {
+        transform: translateY(-10px);
+        width: 15px;
+        left: 5px;
+      }
+      &:nth-child(2) {
+        transform: translateY(10px);
+        width: 15px;
+        left: 5px;
+      }
+      &:nth-child(3) {
+        transform: translateY(0);
+        width: 15px;
+        left: 5px;
+      }
+    }
+    &.active {
+      span {
+        padding-left: 6px;
+        &:nth-child(1) {
+          transform: translateY(0px) rotate(45deg);
+          width: 20px;
+          transition-delay: 0.125s;
+        }
+        &:nth-child(2) {
+          transform: translateY(0px) rotate(315deg);
+          width: 20px;
+          transition-delay: 0.125s;
+        }
+        &:nth-child(3) {
+          transform: translateX(60px);
+        }
+      }
+    }
+  }
+}
+
+@mixin mobile-nav {
+  .mobile-state {
+    position: fixed;
+    top: 70px;
+    left: 1000px;
+    width: 100%;
+    min-height: 100vh;
+    display: block;
+    z-index: 98;
+    background-color: $background-footer;
+    &.activated {
+      left: 0;
+    }
+    li {
+      list-style: none;
+      a {
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto 16px;
+        text-align: center;
+        padding: 12px 16px;
+        background-color: $background-darker;
+        color: $standard-white;
+        text-decoration: none;
+      }
+    }
+  }
+}
