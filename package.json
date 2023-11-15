@@ -3,7 +3,6 @@
   "version": "1.1.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "sass": "sass src/assets/styles:public/assets/styles",
     "sass:watch-dev": "sass --watch --embed-source-map src/assets/styles:public/assets/styles",
@@ -26,7 +25,8 @@
     "watch-html": "chokidar './src/html/**/*.*' -c 'npm run html'",
     "watch": "npm-run-all -p watch-css watch-html watch-img",
     "server-start": "browser-sync start --files 'public' --server 'public'",
-    "server": "npm run fresh-start-and-build && npm-run-all -p watch server-start"
+    "server": "npm run fresh-start-and-build && npm-run-all -p watch server-start",
+    "deploy": "rm -rf deploy.cjs && npx tsc deploy.ts && mv deploy.js deploy.cjs && node deploy.cjs"
   },
   "keywords": [],
   "author": "",
