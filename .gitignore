@@ -1,3 +1,6 @@
+.DS_Store
 DEVELOPMENT.md
 node_modules/*
 public/*
+.env
+*.cjs
