@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>Devtalk - Openshift Container Platform, Part 1</title>
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<h1>Devtalk - OOpenshift Container Platform (OCP), Part 1</h1>
+					<p>Mina Demian from Consid</p>
+				</section>
+				<section>
+					<section data-markdown>
+						<textarea data-template>
+							## Agenda
+							1. Learn how to deploy a front-end application in *two* different ways.
+							2. Go through the different OCP CLI commands.
+							---
+							## Prep
+							1. Download [ocp](https://github.com/minademian/learning-openshift), if you want to follow along.
+							2. Make sure that `oc` is installed, available in PATH and you're logged into your own OCP project.
+							---
+							## Rules
+							1. There are no rules.
+						</textarea>
+					</section>
+				</section>
+				<section>
+					<h2>Method 1: BuildConfig</h2>
+					<p>Let's go through our BuildConfig file and the corresponding tooling.</p>
+				</section>
+					<section>
+						<section>
+							<h2>Method 2: <code>Nodeshift</code></h2>
+						</section>
+						<section>
+							<h2>Some remarks:</h2>
+							<ol>
+								<li>Doesn't work out of the box on Windows. You have to install Visual Studio.</li>
+								<li>`nodeshift` documentation isn't great. Start practising patience and resilience!</li>
+							</ol>
+						</section>
+						<section data-markdown>
+							<section data-markdown>
+								<textarea data-template>
+									## Installation
+									1. (yarn | npm) install npx
+									2. npx nodeshift
+									---
+									## Prep
+									```npm
+									npx nodeshift
+										--strictSSL=false
+										--dockerImage=nodeshift/ubi8-s2i-web-app
+										--build.recreate=buildConfig 
+										--build.incremental=true
+										--build.strategy=source
+										--build.env
+											OUTPUT_DIR=dist/experiment-fe
+											YARN_ENABLED=true
+										--expose 
+										--web-app
+									```
+									---
+									## Final Product?
+								</textarea>
+							</section>
+						</section>
+					</section>
+				</section>
+			</div>
+		</div>
+		<script src="./dist/reveal.js"></script>
+		<script src="./notes/notes.js"></script>
+		<script src="./markdown/markdown.js"></script>
+		<script src="./highlight/highlight.js"></script>
+		<script>
+			Reveal.initialize({
+				hash: true,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
