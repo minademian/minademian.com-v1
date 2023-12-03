@@ -22,10 +22,6 @@ body {
   background-attachment: fixed;
 }
 
-h1 {
-  text-align: center;
-}
-
 h1,
 h2,
 h3 {
@@ -35,10 +31,16 @@ h3 {
 .block {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
   align-items: center;
 }
 
 // Page elements
+article {
+  all: unset;
+}
+
 #intro {
   grid-area: intro;
 }
@@ -60,6 +62,7 @@ h3 {
     }
   }
 }
+
 #talks {
   grid-area: talks;
   a {
@@ -75,6 +78,7 @@ h3 {
     }
   }
 }
+
 section {
   display: grid;
   grid-column: 1fr 1fr 1fr;
@@ -202,6 +206,12 @@ section {
   }
 }
 @media screen and (min-width: 375px) and (max-width: 794px) {
+  .block {
+    & h2 {
+      font-size: 45%;
+    }
+  }
+
   #container {
     height: auto;
     display: grid;
@@ -211,9 +221,6 @@ section {
     grid-template-rows: 10px;
     h1 {
       font-size: 70%;
-    }
-    h2 {
-      font-size: 55%;
     }
     h3 {
       font-size: 50%;
@@ -235,7 +242,6 @@ section {
     }
   }
 }
-
 @media screen and (min-width: 430px) {
   h2,
   h3 {
